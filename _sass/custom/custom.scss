@@ -267,13 +267,13 @@ a.skip-to-main:active {
     font-style: normal;
   }
 
+  // Just the Docs paints custom counters with ::before at `left`.
+  // Mirror them for RTL so numbers/bullets sit on the right.
   ul,
   ol {
     direction: rtl;
-    // `inside` keeps the marker with the text on the RTL start (right)
-    list-style-position: inside;
     padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-right: 1.5em !important;
     margin-left: 0;
     margin-right: 0;
   }
@@ -284,6 +284,23 @@ a.skip-to-main:active {
 
   li + li {
     margin-top: 0.35rem;
+  }
+
+  ol > li::before {
+    left: auto !important;
+    right: -1.6em !important;
+  }
+
+  ul > li::before {
+    left: auto !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: -1.4em !important;
+  }
+
+  .task-list-item-checkbox {
+    margin-left: 0.6em !important;
+    margin-right: -1.4em !important;
   }
 
   table {
