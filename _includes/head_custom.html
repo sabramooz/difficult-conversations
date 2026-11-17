@@ -1,3 +1,24 @@
+<style>
+  /* Inline so Cloudflare/GitHub CSS cache cannot keep list markers on the left. */
+  .main-content ul,
+  .main-content ol {
+    direction: rtl !important;
+    padding-left: 0 !important;
+    padding-right: 1.5em !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .main-content ol > li::before {
+    left: auto !important;
+    right: -1.6em !important;
+  }
+
+  .main-content ul > li::before {
+    margin-left: 0 !important;
+    margin-right: -1.4em !important;
+  }
+</style>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     var input = document.getElementById("search-input");
