@@ -1,0 +1,355 @@
+@import url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css");
+
+:root {
+  --book-font: "Vazirmatn", "Tahoma", sans-serif;
+  --book-line-height: 1.9;
+}
+
+html {
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--book-font);
+  line-height: var(--book-line-height);
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+// Theme uses left:-999px; under RTL that creates horizontal overflow.
+a.skip-to-main {
+  left: 0;
+  right: auto;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+a.skip-to-main:focus,
+a.skip-to-main:active {
+  left: 50%;
+  right: auto;
+  width: 30%;
+  height: auto;
+  margin: 10px 0 10px -15%;
+  padding: 5px;
+  overflow: auto;
+  clip: auto;
+  white-space: normal;
+}
+
+.side-bar,
+.main,
+.main-content,
+.site-header,
+.site-footer,
+.search,
+.nav-list,
+.breadcrumb-nav,
+.aux-nav {
+  font-family: var(--book-font);
+}
+
+.main-content,
+.nav-list,
+.site-title,
+.site-footer,
+.search-results {
+  text-align: right;
+}
+
+// ---------------------------------------------------------------------------
+// Layout mirror: sidebar on the right (must match theme specificity)
+// Theme uses `.side-bar + .main` — plain `.main` cannot override margin-left.
+// ---------------------------------------------------------------------------
+
+@include mq(md) {
+  .side-bar {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: $border $border-color;
+    align-items: flex-start;
+  }
+
+  .side-bar + .main {
+    margin-left: 0;
+    margin-right: $nav-width-md;
+  }
+}
+
+@include mq(lg) {
+  .side-bar {
+    width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
+    min-width: $nav-width;
+  }
+
+  .side-bar + .main {
+    margin-left: 0;
+    // stylelint-disable function-name-case
+    margin-right: Max(
+      #{$nav-width},
+      calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width})
+    );
+    // stylelint-enable function-name-case
+  }
+}
+
+.site-footer {
+  left: auto;
+  right: 0;
+  text-align: right;
+}
+
+.site-title:hover {
+  background-image: linear-gradient(
+    90deg,
+    rgba($feedback-color, 1) 0%,
+    rgba($feedback-color, 0.8) 80%,
+    rgba($feedback-color, 0) 100%
+  );
+}
+
+.site-button:hover {
+  background-image: linear-gradient(
+    90deg,
+    rgba($feedback-color, 1) 0%,
+    rgba($feedback-color, 0.8) 100%
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Search RTL
+// ---------------------------------------------------------------------------
+
+.search-input-wrap {
+  direction: rtl;
+}
+
+.search-input {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--book-font);
+  // Theme pads the left for the icon; flip to the right in RTL
+  padding-left: $gutter-spacing-sm;
+  padding-right: #{$gutter-spacing-sm + $sp-5};
+
+  @include mq(md) {
+    padding-left: $gutter-spacing-sm;
+    padding-right: #{$gutter-spacing + $sp-5};
+    transition: padding-right linear #{$transition-duration * 0.5};
+  }
+}
+
+.search-label {
+  left: auto;
+  right: 0;
+  padding-left: 0;
+  padding-right: $gutter-spacing-sm;
+
+  @include mq(md) {
+    padding-left: 0;
+    padding-right: $gutter-spacing;
+    transition: padding-right linear #{$transition-duration * 0.5};
+  }
+}
+
+.search-results {
+  left: auto;
+  right: 0;
+  direction: rtl;
+  text-align: right;
+  font-family: var(--book-font);
+
+  @include mq(md) {
+    right: 0;
+    left: auto;
+  }
+}
+
+.search-results-list {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.search-result {
+  text-align: right;
+}
+
+.search-result-doc,
+.search-result-section,
+.search-result-rel-url,
+.search-result-previews {
+  direction: rtl;
+  text-align: right;
+}
+
+// Stack title + preview vertically; 40/60 columns look broken in RTL.
+.search-result-title,
+.search-result-previews {
+  @include mq(sm) {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    vertical-align: top;
+  }
+}
+
+.search-result-doc .search-result-icon {
+  margin-right: 0;
+  margin-left: $sp-2;
+}
+
+.search-result-section,
+.search-result-rel-url {
+  margin-left: 0;
+  margin-right: #{$sp-4 + $sp-2};
+}
+
+.search-result-previews {
+  padding-left: 0;
+  padding-right: $sp-4;
+  margin-left: 0;
+  margin-right: $sp-2;
+  border-left: none;
+  border-right: $border;
+  border-right-color: $border-color;
+
+  @include mq(sm) {
+    padding-left: 0;
+    padding-right: $sp-2;
+    margin-right: 0;
+  }
+}
+
+.main-header {
+  direction: rtl;
+}
+
+.search-active .search {
+  left: auto;
+  right: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Content readability
+// ---------------------------------------------------------------------------
+
+.main-content {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--book-font);
+    letter-spacing: 0;
+    line-height: 1.45;
+  }
+
+  p,
+  li {
+    font-size: 1.05rem;
+    line-height: var(--book-line-height);
+  }
+
+  blockquote {
+    border-right: 4px solid $link-color;
+    border-left: none;
+    padding-right: 1rem;
+    padding-left: 0;
+    color: $grey-dk-100;
+    font-style: normal;
+  }
+
+  ul,
+  ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+  }
+
+  table {
+    text-align: right;
+    direction: rtl;
+  }
+}
+
+.nav-list .nav-list-item .nav-list-link {
+  text-align: right;
+}
+
+.nav-list .nav-list-item .nav-list-expander {
+  // Expander sits on the opposite side in RTL menus
+  right: auto;
+  left: 0;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+  direction: rtl;
+}
+
+.chapter-nav a.btn {
+  display: inline-block;
+  margin: 0;
+}
+
+.chapter-nav a.btn:not(.btn-primary):hover {
+  background-color: $grey-lt-000;
+  background-image: none;
+}
+
+.chapter-nav a.btn-primary:hover {
+  // Keep primary readable; theme hover can wash out to white text on light bg
+  background-image: none;
+  background-color: darken($btn-primary-color, 8%);
+  color: $white;
+  border-color: darken($btn-primary-color, 8%);
+}
+
+.checklist {
+  background: $grey-lt-000;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.checklist ul {
+  list-style: none;
+  padding-right: 0;
+  margin: 0;
+}
+
+.checklist li {
+  position: relative;
+  padding-right: 1.75rem;
+  margin: 0.6rem 0;
+}
+
+.checklist li::before {
+  content: "☐";
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.aux-nav {
+  direction: rtl;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+}

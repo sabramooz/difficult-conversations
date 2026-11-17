@@ -1,0 +1,80 @@
+title: گفتگوهای دشوار
+description: راهنمای آموزشی فارسی برای یادگیری مهارت گفتگوهای دشوار — بر اساس چارچوب کتاب Difficult Conversations
+theme: just-the-docs
+
+url: https://difficult-conversations.sabramooz.ir
+baseurl: ""
+
+language: fa
+lang: fa
+
+search_enabled: true
+search:
+  heading_level: 3
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s\-/]+/
+  rel_url: true
+  button: false
+  focus_shortcut_key: k
+
+heading_anchors: true
+
+aux_links:
+  "مشاهده در GitHub":
+    - "//github.com/sabramooz/difficult-conversations"
+
+aux_links_new_tab: true
+
+nav_external_links: []
+
+footer_content: "راهنمای آموزشی مستقل به فارسی — مبتنی بر چارچوب Difficult Conversations اثر Stone، Patton و Heen."
+
+last_edit_timestamp: false
+gh_edit_link: false
+
+# color_scheme: dark
+
+callouts_level: quiet
+callouts:
+  tip:
+    title: نکته
+    color: green
+  warning:
+    title: هشدار
+    color: yellow
+  important:
+    title: مهم
+    color: blue
+  practice:
+    title: تمرین
+    color: purple
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-include-cache
+
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - .gitignore
+  - .github
+  - "*.pdf"
+  - difficult-conversations-how-to-discuss-what-matters-most-revised.pdf

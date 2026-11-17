@@ -1,0 +1,20 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var input = document.getElementById("search-input");
+    if (input) {
+      input.setAttribute("placeholder", "جستجو در مطالب…");
+      input.setAttribute("aria-label", "جستجو در مطالب");
+    }
+
+    var results = document.getElementById("search-results");
+    if (results) {
+      var observer = new MutationObserver(function () {
+        var empty = results.querySelector(".search-no-result");
+        if (empty && /no results/i.test(empty.textContent || "")) {
+          empty.textContent = "نتیجه‌ای پیدا نشد";
+        }
+      });
+      observer.observe(results, { childList: true, subtree: true });
+    }
+  });
+</script>
